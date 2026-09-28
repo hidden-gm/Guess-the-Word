@@ -1,0 +1,27 @@
+package com.guesswordgame.controller;
+
+import com.guesswordgame.dto.AuthDtos;
+import com.guesswordgame.service.AuthService;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
+
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public AuthDtos.AuthResponse register(@RequestBody AuthDtos.RegisterRequest request) {
+        return authService.register(request);
+    }
+
+    @PostMapping("/login")
+    public AuthDtos.AuthResponse login(@RequestBody AuthDtos.LoginRequest request) {
+        return authService.login(request);
+    }
+}
