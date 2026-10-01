@@ -15,3 +15,6 @@ data/
 
 # Environment
 .env
+
+#fix bug before committing
+docker-compose.yml
